@@ -25,7 +25,7 @@ router.beforeEach(
           // 刚开始踩坑了，js的时间戳微妙为单位，而且木有时区，和PHP不一样
           let js_time = Math.round(new Date().getTime() / 1000 - 28800)
           Vue.auth.setToken(response.data.access_token, response.data.refresh_token, response.data.expires_in + js_time);
-          next({path: '/readme'})
+          next(to)
         })
         .catch(response => {
           next({path: '/login'})

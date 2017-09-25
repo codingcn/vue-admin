@@ -26,6 +26,15 @@ export default new Router({
           component: resolve => require(['../components/page/BaseTable.vue'], resolve)
         },
         {
+          path: '/articles',
+          component: resolve => require(['../components/page/Articles.vue'], resolve)     // 文章列表
+        },
+        {
+          name:'article',
+          path: '/article/:id',
+          component: resolve => require(['../components/page/Article.vue'], resolve)     // 文章编辑
+        },
+        {
           path: '/vuetable',
           component: resolve => require(['../components/page/VueTable.vue'], resolve)     // vue-datasource组件
         },
