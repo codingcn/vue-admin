@@ -71,6 +71,12 @@
       compiledMarkdown: function () {
         // 编译markdown为html
         this.content_html = marked(this.content_md, {sanitize: true})
+        
+        this.$emit('getEditorContent', {
+            'content_md':this.content_md,
+            'content_html':this.content_html
+          }
+        )
         return this.content_html
       }
     },
