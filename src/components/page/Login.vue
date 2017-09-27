@@ -41,6 +41,7 @@
     },
     methods: {
       submitForm(formName) {
+        console.log(this)
         const self = this;
         self.$refs[formName].validate((valid) => {
           if (valid) {
@@ -51,7 +52,8 @@
               grant_type: 'password',
               scopes: []
             };
-            this.$axios.post('http://localhost/blog/public/api/oauth/token', data)
+
+            this.$axios.post(this.$difines.root_url + '/api/oauth/token', data)
               .then(response => {
                 // 刚开始踩坑了，js的时间戳微妙为单位，而且木有时区，和PHP不一样
                 let js_time = Math.round(new Date().getTime() / 1000 - 28800)
@@ -60,18 +62,18 @@
               })
               .catch((err) => {
                 this.loading = false
-                if (err.response.status===401){
+                if (err.response.status === 401) {
                   this.$notify.error({
                     title: '错误',
                     message: '账号信息有误'
                   });
-                }else{
+                } else {
                   this.$notify.error({
                     title: '错误',
                     message: '服务器开小差了'
                   });
                 }
-            });
+              });
           } else {
             console.log('error submit!!');
             return false;
@@ -81,7 +83,7 @@
       getAdmin() {
         const self = this;
         this.$axios({
-          url: 'http://localhost/blog/public/api/admin-user',
+          url: this.$difines.root_url+'/api/admin-user',
           method: 'post',
           headers: {
             'Authorization': 'Bearer ' + this.$auth.getToken(),

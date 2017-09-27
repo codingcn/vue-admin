@@ -49,7 +49,7 @@
   //  import qs from 'qs'
 
   export default {
-    props: ['markdown', 'upload_uri'],
+    props: ['markdown', 'upload_action_editor'],
     name: 'editor',
     beforeMount: function () {
       this.setMarkdown()
@@ -213,7 +213,7 @@
         let formdata = new FormData()
         formdata.append('image', file)
         axios({
-          url: this.upload_uri,
+          url: this.upload_action_editor,
           method: 'post',
           data: formdata,
           headers: {'Content-Type': 'application/multipart/form-data'}
