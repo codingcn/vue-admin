@@ -81,8 +81,7 @@
           cover_path: ''
         },
         upload_action_cover: this.$difines.root_url + '/api/admin/article/upload-cover',
-        file_list: [
-        ],
+        file_list: [],
         upload_action_editor: this.$difines.root_url + '/api/admin/article/upload-editor'   // 图片上传服务器地址
       }
     },
@@ -101,8 +100,8 @@
           this.form.status = data.status === 2 ? true : false
           this.form.cover_path = data.cover
           this.file_list.push({
-            name:data.title,
-            url:data.cover,
+            name: data.title,
+            url: data.cover,
           })
           console.log(this.form)
           this.loading = false
